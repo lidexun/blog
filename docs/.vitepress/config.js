@@ -1,8 +1,11 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
+  base: '/blog/',
   lang:'zh',
   title: 'dgex',
+  description: '前端工程师',
+  head: [["link", { rel: "icon", type: "image/svg+xml", href: "logo.svg" }]],
   themeConfig: {
     logo: '/logo.svg',
     nav: [
