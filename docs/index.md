@@ -12,11 +12,11 @@ hero:
     alt: 前端打杂师-logo
   actions:
     - theme: brand
-      text: 你干嘛啊～
-      link: /about/
+      text: 开始阅读
+      link: /article/
     - theme: alt
       text: 我的项目
-      link: /about/project
+      link: /about/
 features:
   - icon: 📖
     title: 博客/笔记/教程
