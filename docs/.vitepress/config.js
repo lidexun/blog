@@ -4,7 +4,8 @@ import { readdirSync, statSync, readFileSync } from 'fs'
 import matter from 'gray-matter'
 let sidebar = {}
 const path = resolve(__dirname, `../`)
-const list = readdirSync(path).filter(item => item[0] !== '.' && item !== 'public'  && item !== 'index.md')
+const f = ['.DS_Store', '.vitepress', 'dome', 'index.md', 'public']
+const list = readdirSync(path).filter(item => !f.includes(item))
 list.forEach((key) => {
   const p = `${path}/${key}`
   const dir = readdirSync(p)
@@ -47,6 +48,7 @@ let config = defineConfig({
   title: 'dgex',
   description: '前端工程师',
   head: [['link', { rel: 'icon', type: 'image/svg+xml', href: 'logo.svg' }]],
+  lastUpdated: true,
   themeConfig: {
     logo: '/logo.svg',
     nav: [
