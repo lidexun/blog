@@ -25,7 +25,7 @@ list.forEach((key) => {
       obj.items.push({
         text: data.text || '导读',
         link: `/${key}/`,
-        ctime: 0
+        ctime: 9999999999
       })
     } else {
       const fileName = item.replace(/\.md$/, '')
@@ -38,14 +38,14 @@ list.forEach((key) => {
       })
     }
   }
-  obj.items.sort((a,b) => a.ctime - b.ctime)
+  obj.items.sort((a,b) => b.ctime - a.ctime)
   sidebar[`${key}`] = [obj]
 })
 
 let config = defineConfig({
   base: '/blog/',
   lang: 'zh',
-  title: 'dgex',
+  title: ' ',
   description: '前端工程师',
   head: [['link', { rel: 'icon', type: 'image/svg+xml', href: 'logo.svg' }]],
   lastUpdated: true,
