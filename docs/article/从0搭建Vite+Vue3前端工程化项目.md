@@ -613,11 +613,87 @@ pnpm i -D prettier eslint-config-prettier eslint-plugin-prettier
   }
   ```
 - 关于更多配置项信息,请前往 [Prettier 官网](https://prettier.io/docs/en/options.html) 查看
+## husky与lint-staged功能添加
+husky是一个为 git 客户端增加 hook 的工具, 在一	些git操作前 自动触发的函数; https://typicode.github.io/	
+husky/#/; 如果我们希望在检测错误的同时，自动修复eslint 语法错误,就可以通过后面钩子实现
+lint-staged 过滤出 Git 代码暂存区文件(被 git ado d 的文件)的工具,将所有暂存文件的列表传递给任务
 
-<!-- pnpm i lint-staged husky -D
-npx husky install
-pnpm run prepare
-pnpm i @commitlint/cli @commitlint/config-conventional -D
-npx husky add .husky/commit-msg "npx --no -- commitlint --edit ${1}"  -->
+### 安装
+```sh
+pnpm i lint-staged husky -D
+```
+```sh
+# 编辑脚本并运行一次：package.json > prepare
+npm pkg set scripts.prepare="husky install"
+npm run prepare
+# or
+# package.json添加以下脚本
+# scripts: {
+# 	"prepare": "husky install",
+# }
+# 初始化git
+git init
+# 添加钩子：
+npx husky add .husky/pre-commit "npx lint-staged"
+git add .husky/pre-commit
+```
+package.json根节点中添加以下内容
+```json
+{
+  "lint-staged": {
+    "*.{js,ts,tsx,vue,json}": [
+      "prettier --write"
+    ],
+    "*.{js,ts,tsx,vue}": [
+      "eslint --fix"
+    ]
+  },
+}
+```
+
+`pre-commit` `hook `文件作用是：当执行`git commit -m "xxx" 时`，会先对 src 目录下所有的 `js,ts,tsx,vue` 文件执行 `eslint --fix` 就会修复此次写的代码，而不去影响其他的代码
+## commitlint 规范提交代码
+### 安装
+- @commitlint/cli - Commitlint 本体
+- @commitlint/config-conventional - 通用提交规范
+```sh
+pnpm add @commitlint/config-conventional @commitlint/cli -D
+```
+添加到git钩子里	
+```sh
+npx husky add .husky/commit-msg "npx --no -- commitlint --edit ${1}"
+```
+新建`.commitlintrc.json`配置
+```json
+{
+  "extends": ["@commitlint/config-conventional"],
+  "rules": {
+    "type-enum": [
+      2,
+      "always",
+      [
+        "build",
+        "feat",
+        "fix",
+        "docs",
+        "style",
+        "refactor",
+        "format",
+        "perf",
+        "test",
+        "build",
+        "ci",
+        "chore",
+        "revert",
+        "update",
+        "husky"
+      ]
+    ],
+    "subject-full-stop": [0, "never"],
+    "subject-case": [0, "never"]
+  }
+}
+```
+
 ### 文章总结
 本文从技术选项到架构搭建、从代码规范约束到提交信息规范约束，一步一步带领大家如何从一个最简单的前端项目骨架到规范的前端工程化环境，基本涵盖前端项目开发的整个流程，特别适合刚接触前端工程化的同学学习。
