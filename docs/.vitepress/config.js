@@ -2,9 +2,12 @@ import { defineConfig } from 'vitepress'
 import { resolve } from 'path'
 import { readdirSync, statSync, readFileSync } from 'fs'
 import matter from 'gray-matter'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ArcoResolver } from 'unplugin-vue-components/resolvers'
 let sidebar = {}
 const path = resolve(__dirname, `../`)
-const f = ['.DS_Store', '.vitepress', 'dome', 'index.md', 'public']
+const f = ['.DS_Store', '.vitepress', 'dome', 'index.md', 'public', 'components']
 const list = readdirSync(path).filter(item => !f.includes(item))
 list.forEach((key) => {
   const p = `${path}/${key}`
@@ -45,7 +48,7 @@ list.forEach((key) => {
 let config = defineConfig({
   base: '/blog/',
   lang: 'zh',
-  title: ' ',
+  title: 'FE',
   description: '前端工程师',
   head: [['link', { rel: 'icon', type: 'image/svg+xml', href: 'logo.svg' }]],
   lastUpdated: true,
@@ -74,8 +77,24 @@ let config = defineConfig({
     lastUpdatedText: '更新时间',
     darkModeSwitchLabel: '外观',
     sidebarMenuLabel: '目录',
-    returnToTopLabel: '返回顶部'
+    returnToTopLabel: '返回顶部',
+    appearance: false
   },
+  vite: {
+    plugins: [
+      AutoImport({
+        imports: ['vue'],
+        resolvers: [ArcoResolver()],
+      }),
+      Components({
+        resolvers: [
+          ArcoResolver({
+            sideEffect: true
+          })
+        ]
+      })
+    ]
+  }
 })
 
 export default config

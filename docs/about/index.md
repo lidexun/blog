@@ -1,8 +1,15 @@
 ---
-title: ⭐ 关于
-text: 作者本人
+sidebar: false
+layout: page
+head:
+  - - script
+    - src: https://lf1-cdn-tos.bytegoofy.com/obj/iconpark/svg_23799_18.da6fe3ace4b43623a199e0510bda0571.js
 ---
-# 🌈 我的项目
+<script setup>
+import AboutComponent from '../components/about/index.vue'
+</script>
+<AboutComponent />
+<!-- # 🌈 我的项目
 - MAKA 官网(PC)
   - 技术展：[`Nuxtjs`](https://nuxtjs.org/) + [`Vue2`](https://v2.cn.vuejs.org/) + [`Element UI`](https://element.eleme.cn/#/zh-CN)
   - 访问地址： https://www.maka.im/muban
@@ -23,4 +30,4 @@ text: 作者本人
   - 访问地址：https://lidexun.gitee.io/project/hongyu/index.html
 - 旭升官网
   - 技术展：[`Bootstrap3`](https://www.bootcss.com/) + [`Swiper3`](https://www.swiper.com.cn/)+ [`JQuery`](https://www.swiper.com.cn/)
-  - 访问地址：https://lidexun.gitee.io/project/xusheng/index.html
+  - 访问地址：https://lidexun.gitee.io/project/xusheng/index.html -->

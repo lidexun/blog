@@ -2,7 +2,7 @@
 layout: home
 heroImage: /favicon.ico
 hero:
-  name: 『 dgex 』
+  name: FE
   text: 前端打杂师
   tagline: |
     兼职遛狗/搬家/卖水果，全能型人才
