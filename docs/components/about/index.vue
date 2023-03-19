@@ -12,11 +12,11 @@ AOS.init({
   // easing: 'ease-in-out-back'
 });
 const my_project = reactive([
-  { url: '/app/ruyue.png' },
-  { url: '/app/aiqingren.png' },
-  { url: '/app/duduteyun_w.png' },
-  { url: '/app/youzi.png' },
-  { url: '/app/maka.png' },
+  { url: '/ruyue.png' },
+  { url: '/aiqingren.png' },
+  { url: '/duduteyun_w.png' },
+  { url: '/youzi.png' },
+  { url: '/maka.png' },
 ])
 </script>
 <template>
