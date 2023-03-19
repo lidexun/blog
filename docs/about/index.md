@@ -3,7 +3,7 @@ sidebar: false
 layout: page
 head:
   - - script
-    - src: https://lf1-cdn-tos.bytegoofy.com/obj/iconpark/svg_23799_18.da6fe3ace4b43623a199e0510bda0571.js
+    - src: https://lf1-cdn-tos.bytegoofy.com/obj/iconpark/svg_23799_22.3d45e354aafc78b5591daaaabcf59070.js
 ---
 <script setup>
 import AboutComponent from '../components/about/index.vue'

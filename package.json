@@ -11,11 +11,12 @@
   },
   "author": "",
   "license": "ISC",
+  "type": "module",
   "devDependencies": {
-    "@arco-design/web-vue": "^2.44.1",
+    "@unocss/preset-uno": "^0.50.6",
     "gray-matter": "^4.0.3",
+    "unocss": "^0.50.6",
     "unplugin-auto-import": "^0.15.1",
-    "unplugin-vue-components": "^0.24.1",
     "vitepress": "^1.0.0-alpha.51",
     "vue": "^3.2.47"
   },

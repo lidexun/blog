@@ -3,12 +3,19 @@ import { resolve } from 'path'
 import { readdirSync, statSync, readFileSync } from 'fs'
 import matter from 'gray-matter'
 import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
-import { ArcoResolver } from 'unplugin-vue-components/resolvers'
+import Unocss from 'unocss/vite'
+import presetUno from '@unocss/preset-uno'
 let sidebar = {}
 const path = resolve(__dirname, `../`)
-const f = ['.DS_Store', '.vitepress', 'dome', 'index.md', 'public', 'components']
-const list = readdirSync(path).filter(item => !f.includes(item))
+const f = [
+  '.DS_Store',
+  '.vitepress',
+  'dome',
+  'index.md',
+  'public',
+  'components'
+]
+const list = readdirSync(path).filter((item) => !f.includes(item))
 list.forEach((key) => {
   const p = `${path}/${key}`
   const dir = readdirSync(p)
@@ -18,11 +25,11 @@ list.forEach((key) => {
   }
   for (let i = 0; i < dir.length; i++) {
     const item = dir[i]
-    const temp = readFileSync(`${p}/${item}`,{
+    const temp = readFileSync(`${p}/${item}`, {
       encoding: 'utf-8',
       flag: 'as+'
     })
-    const { data } =  matter(temp)
+    const { data } = matter(temp)
     if (item === 'index.md') {
       obj.text = data.title || key
       obj.items.push({
@@ -36,12 +43,12 @@ list.forEach((key) => {
       obj.items.push({
         ...data,
         text: data.text || fileName,
-        link:  `/${key}/${item.replace(/\.md$/, '.html')}`,
+        link: `/${key}/${item.replace(/\.md$/, '.html')}`,
         ctime: Math.round(new Date(stat.ctime).valueOf() / 1000)
       })
     }
   }
-  obj.items.sort((a,b) => b.ctime - a.ctime)
+  obj.items.sort((a, b) => b.ctime - a.ctime)
   sidebar[`${key}`] = [obj]
 })
 
@@ -83,16 +90,9 @@ let config = defineConfig({
   vite: {
     plugins: [
       AutoImport({
-        imports: ['vue'],
-        resolvers: [ArcoResolver()],
+        imports: ['vue']
       }),
-      Components({
-        resolvers: [
-          ArcoResolver({
-            sideEffect: true
-          })
-        ]
-      })
+      Unocss({ presets: [presetUno()] })
     ]
   }
 })

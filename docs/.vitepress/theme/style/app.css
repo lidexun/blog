@@ -7,10 +7,11 @@
 @media screen and (max-width: 750px) {
   html{
     font-size: 4.26666vw;
+    font-size: 2.13333vw;
     font-size: 3vw;
     /* 2.13333vw */
   }
-}
+} 
 body{
   /* background-color: #f7f9fe; */
   line-height: 1.15;

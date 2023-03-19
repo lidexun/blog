@@ -1,81 +1,90 @@
 <script setup>
-const list = reactive([
-  {
-    label: '2017年',
-    title: '初出茅庐',
-    text: 'Hybrid APP',
-    icon: {
-      name: '#js',
-      bg: '#f7cb4f',
-      brightness: true
-    }
-  },
-  {
-    label: '2020年',
-    title: '已有小成',
-    text: 'Vue/APP',
-    icon: {
-      name: '#vue',
-    }
+// const list = reactive([
+//   {
+//     label: '2017年',
+//     title: '初出茅庐',
+//     text: 'Hybrid APP',
+//     icon: {
+//       name: '#js',
+//       bg: '#f7cb4f',
+//       brightness: true
+//     }
+//   },
+//   {
+//     label: '2020年',
+//     title: '已有小成',
+//     text: 'Vue/APP',
+//     icon: {
+//       name: '#vue',
+//     }
 
+//   },
+//   {
+//     label: '2021~现在',
+//     title: '全栈',
+//     text: 'Node(SSR)',
+//     icon: {
+//       name: '#nuxt',
+//     }
+//   },
+// ])
+const timelinelist = reactive([
+  {
+    label: 'H5混合APP工程师',
+    title: 'Fore End(Hybrid APP)',
+    color: 'f7cb4f',
   },
   {
-    label: '2021~现在',
-    title: '全栈',
-    text: 'Node(SSR)',
-    icon: {
-      name: '#nuxt',
-    }
+    label: 'APP前端负责人(自由职业)',
+    title: 'Fore End(APP Principal)',
+    color: '41b883',
   },
+  {
+    label: '前端工程师(Node/全栈)',
+    title: 'Fore End(Node SSR)',
+    color: '00dc82',
+  }
 ])
 </script>
 <template>
   <div class="timeline_circle"></div>
-  <a-timeline class="timeline" direction="horizontal" mode="left" labelPosition="relative">
-    <a-timeline-item v-for="(item, index) in list" :label="item.label">
-      <a-row>
-        <div class="timeline_icon_box" :style="{
-          backgroundColor: item.icon.bg
-        }">
-          <svg class="iconpark_icon" :class="{
-            brightness: item.icon.brightness
-          }">
-            <use :href="item.icon.name"></use>
-          </svg>
-        </div>
-        <div :style="{ marginBottom: '0.5rem' }">
-          {{ item.title }}
-          <div :style="{ fontSize: '0.5rem', color: '#4E5969' }">
-            {{ item.text }}
-          </div>
-        </div>
-      </a-row>
-    </a-timeline-item>
-  </a-timeline>
+  <div class="flex flex-col h-full pt-5 pb-5 justify-between">
+    <div>
+      <div class="text-sm text-true-gray-400 flex align-center mb-2" v-for="item in timelinelist">
+        <div class="aspect-square h-4 rounded-full mr-2" :class="['bg-hex-' + item.color]"></div>
+        {{ item.title }}</div>
+    </div>
+    <div class="-mr-6 -ml-6">
+      <div class="w-full relative h-1.5 bg-gray flex z-1 px-8">
+        <div class="timeline_progress h5  rounded-full bg-hex-f7cb4f w-4/6"></div>
+        <div class="timeline_progress on absolute h5 rounded-full bg-hex-41b883 w-4/8 left-4/12 px-8"></div>
+        <div class="timeline_progress h5  rounded-full bg-hex-00dc82 w-4/12"></div>
+      </div>
+      <div class="px-8 flex justify-between c-gray">
+        <div class="timeline_after mt-1 h-10 w-1 bg-true-gray-300 relative" data-year="2017"></div>
+        <div class="timeline_after mt-1 h-10 w-1 bg-true-gray-300 relative" data-year="2020"></div>
+        <div class="timeline_after mt-1 h-10 w-1 bg-true-gray-300 relative" data-year="2021"></div>
+        <div class="timeline_after mt-1 h-10 w-1 bg-true-gray-300 relative" data-year="2022"></div>
+      </div>
+    </div>
+  </div>
 </template>
 <style scoped>
-.timeline {
-  padding-left: 0.5rem;
-  align-items: center;
-  height: 100%;
+.timeline_after::after {
+  content: attr(data-year);
+  position: absolute;
+  bottom: -50%;
+  /* left: -50%; */
+  transform: translateX(-40%);
+}
+.timeline_progress{
+  transform: translateY(-30%);
+}
+.timeline_progress.on{
+  transform: translateY(-150%);
 }
 
-.timeline .timeline_icon_box {
-  box-shadow: 0 1px 0.5rem -3px rgb(0 0 0 / 15%);
-  border-radius: 0.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 3rem;
-  height: 3rem;
-  margin: 0 0.3rem;
-}
-
-.timeline_icon_box .iconpark_icon {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-.timeline_circle{
+.timeline_circle {
   position: absolute;
   top: -2rem;
   right: -2rem;

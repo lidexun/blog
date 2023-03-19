@@ -70,6 +70,24 @@ let icons = [
     bg: '#086DD7',
     brightness: true
   },
+  {
+    name: '#unocss',
+  },
+  {
+    name: '#github',
+    bg: '#191717',
+    brightness: true
+  },
+  {
+    name: '#jquery',
+    bg: '#0868ac',
+    brightness: true
+  },
+  {
+    name: '#uni',
+    bg: '#2b9939',
+    brightness: true
+  },
 ]
 function randSort(arr) {
   let newArr = [];

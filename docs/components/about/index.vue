@@ -4,10 +4,11 @@ import technical from './technical.vue'
 import tags from './tags.vue'
 import timeline from './timeline.vue'
 import mbp from './mbp.vue'
+import findme from './findme.vue'
 import AOS from 'aos';
-import 'aos/dist/aos.css'; // You can also use <link> for styles
 AOS.init({
-  // once: true
+  offset: 300,
+  once: true
   // easing: 'ease-in-out-back'
 });
 const my_project = reactive([
@@ -19,118 +20,70 @@ const my_project = reactive([
 ])
 </script>
 <template>
-  <div class="about_me" data-aos="fade-up" data-aos-duration="300">
-    <a-avatar class="avatar" :size="160" image-url="/avatar.jpg"></a-avatar>
+   <!-- data-aos="fade-up" data-aos-duration="300" -->
+   <div class="w-full m-4 m-auto md:w-screen-md lg:w-screen-lg">
+    <div class="flex align-items justify-center mb20 mt20">
+      <img src="/avatar.jpg" class="w-40 rounded-full"  data-aos="fade-up">
+    </div>
+    <div class="grid grid-gap-4 grid-cols-2">
+      <card :delay="150" class="hola_amigo" title="Hola Amigo" background="linear-gradient(45deg, #2196f3, #00bcd4)">
+        <div class="hola_amigo_title">
+          我叫 李德勋
+        </div>
+      </card>
+      <card :delay="300" title="是一名">
+        <tags></tags>
+      </card>
+      <card class="col-span-2" :delay="450" :style="{
+        height: '12rem'
+      }">
+        <!-- <mbp></mbp> -->
+        <findme></findme>
+      </card>
+      <card :delay="750" title="技能">
+        <technical></technical>
+      </card>
+      <card :delay="600" title="生涯时间轴">
+        <timeline></timeline>
+      </card>
+      <card :delay="500" class="col-span-2" :style="{
+        height: '12rem'
+      }" :background="'linear-gradient(to right, #434343, #000000)'">
+        <mbp></mbp>
+      </card>
+      <card :delay="750" title="用友开发者大赛" :style="{
+        height: '50vh'
+      }" :background="'url(/yongyou.jpg) center/contain'" shadow>
+      </card>
+      <card :delay="600" :style="{
+        height: '50vh'
+      }" title="迷踪步" :background="'url(/mzb.jpg) center/contain'" shadow>
+      </card>
   </div>
-  <div class="about_page">
-    <a-grid :cols="{
-      // lg: 2,
-      md: 2,
-      sm: 1,
-      xs: 1
-    }" :colGap="16" :rowGap="16">
-      <a-grid-item>
-        <card :delay="150" class="hola_amigo" title="Hola Amigo" background="linear-gradient(45deg, #2196f3, #00bcd4)">
-          <div class="hola_amigo_title">
-            我叫 李德勋
-          </div>
-        </card>
-      </a-grid-item>
-      <a-grid-item>
-        <card :delay="300" title="是一名">
-          <tags></tags>
-        </card>
-      </a-grid-item>
-      <a-grid-item :span="2">
-        <card :delay="450" :style="{
-          height: '12rem'
-        }" :background="'linear-gradient(to right, #434343, #000000)'">
-          <mbp></mbp>
-        </card>
-      </a-grid-item>
-      <a-grid-item>
-        <card :delay="750" title="技能">
-          <technical></technical>
-        </card>
-      </a-grid-item>
-      <a-grid-item>
-        <card :delay="600" title="生涯时间轴">
-          <timeline></timeline>
-        </card>
-      </a-grid-item>
-      <a-grid-item>
-        <card :delay="300" title="用友开发者大赛" :style="{
-          height: '50vh'
-        }" :background="'url(/yongyou.jpg) center/contain'" shadow>
-        </card>
-      </a-grid-item>
-      <a-grid-item>
-        <card :style="{
-          height: '50vh'
-        }" title="迷踪步" :background="'url(/mzb.jpg) center/contain'" shadow>
-        </card>
-      </a-grid-item>
-      <!-- <a-grid-item :span="2">
-        <card :delay="450" >
-          <div class="project_name">
-            <span>SOME PROJECT</span>
-          </div>
-        </card>
-      </a-grid-item> -->
-    </a-grid>
-  </div>
+</div>
   <div class="project">
     <div class="project_app">
-    <div class="project_app_title" data-aos="fade-up" data-aos-duration="300">APP PROJECT</div>
-    <div class="project_app_text" data-aos="fade-up" data-aos-duration="300" :data-aos-delay="150">
-      基于Hybrid APP技术独立研发的应用
-    </div>
-    <a-button type="outline" shape="round" size="large" data-aos="fade-up" data-aos-duration="300"
-      :data-aos-delay="300">已上架到各大安卓应用市场/苹果App Store</a-button>
-    <div class="project_app_img">
-      <template v-for="(item, index) in my_project">
-        <img class="project_app_img_item" data-aos="project_app_img_item_on" :data-aos-delay="index * 150"
-          :src="item.url" :data-aos-offset="300" :style="{
-            'transform': 'translate3d(0px, 0px, ' + ((index + 2) * 350) + 'px)'
-          }">
+      <div class="project_app_title" data-aos="fade-up" data-aos-duration="300">APP PROJECT</div>
+      <div class="project_app_text" data-aos="fade-up" data-aos-duration="300" :data-aos-delay="150">
+        基于Hybrid APP技术独立研发的应用
+      </div>
+      <!-- <a-button type="outline" shape="round" size="large" data-aos="fade-up" data-aos-duration="300"
+              :data-aos-delay="300">已上架到各大安卓应用市场/苹果App Store</a-button> -->
+      <div class="project_app_img">
+        <template v-for="(item, index) in my_project">
+          <img class="project_app_img_item" data-aos="project_app_img_item_on" :data-aos-delay="index * 150"
+            :src="item.url" :data-aos-offset="600" :style="{
+              'transform': 'translate3d(0px, 0px, ' + ((index + 2) * 350) + 'px)'
+            }">
         </template>
       </div>
     </div>
     <!-- <div class="project_other">
-      <div class="project_other_bg" data-aos-duration="1200" data-aos="project_other_bg_on" :data-aos-offset="300"></div>
-
-    </div> -->
+              <div class="project_other_bg" data-aos-duration="1200" data-aos="project_other_bg_on" :data-aos-offset="300"></div>
+            </div> -->
   </div>
 </template>
 <style scoped>
-.about_page {
-  max-width: 65rem;
-  margin: 1rem auto;
-  padding: 0 1rem;
-}
-
-.about_me {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  transform: translateY(15vh);
-  transition: 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
-  opacity: 0;
-}
-
-.about_me .avatar {
-  margin: 1rem 0;
-}
-
-.about_me .about_me_text {
-  font-size: 2.5rem;
-  font-weight: bold;
-  text-align: center;
-  line-height: 1;
-  padding-bottom: 1.5rem;
-}
-
 .hola_amigo {
   display: flex;
   justify-content: center;
@@ -154,7 +107,7 @@ const my_project = reactive([
 
 .project_app {
   text-align: center;
-  margin: 10rem 0 ;
+  margin: 10rem 0;
 }
 
 .project_app_title {
@@ -201,6 +154,7 @@ const my_project = reactive([
 [data-aos="project_app_img_item_on"].aos-animate {
   transform: none !important;
 }
+
 [data-aos="project_other_bg_on"].aos-animate {
   transform: none !important;
 }
@@ -213,14 +167,17 @@ const my_project = reactive([
 .project_app_img_item:nth-child(even) {
   top: -2rem;
 }
-.project_other{
+
+.project_other {
   /* background-color: #333; */
   min-height: 100vh;
   position: relative;
 }
-.project_other img{
+
+.project_other img {
   width: 18rem;
 }
+
 .project_other_title {
   text-align: center;
   font-weight: bold;
@@ -235,11 +192,12 @@ const my_project = reactive([
   /* Chrome 10-25, Safari 5.1-6 */
   /* background: linear-gradient(to right, #A5FECB, #20BDFF, #5433FF); */
   /* -webkit-background-clip: text; */
-    /* -webkit-text-fill-color: transparent; */
+  /* -webkit-text-fill-color: transparent; */
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
-.project_other_bg{
+
+.project_other_bg {
   position: absolute;
   top: 0;
   left: 0;
@@ -252,7 +210,8 @@ const my_project = reactive([
   width: 100vw;
   transform: scaleX(0.6);
 }
-.project_other_bg::after{
+
+.project_other_bg::after {
   background-color: rgba(0, 0, 0, 0.1);
   content: '';
   position: absolute;
@@ -263,7 +222,8 @@ const my_project = reactive([
   margin: 0;
   /* backdrop-filter: blur(5px); */
 }
-.project_name{
+
+.project_name {
   height: 100%;
   font-weight: bold;
   padding: 0 2rem;
@@ -274,6 +234,7 @@ const my_project = reactive([
   align-items: center;
   justify-content: center;
 }
+
 @keyframes gradient {
   0% {
     -webkit-filter: hue-rotate(0deg);
