@@ -15,7 +15,7 @@ hero:
       text: 开始阅读
       link: /article/
     - theme: alt
-      text: 我的项目
+      text: ⭐ 关于作者
       link: /about/
 features:
   - icon: 📖

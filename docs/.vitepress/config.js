@@ -67,7 +67,7 @@ let config = defineConfig({
         link: '/article/'
       },
       {
-        text: '⭐ 关于',
+        text: '⭐ 关于作者',
         link: '/about/'
       }
     ],
