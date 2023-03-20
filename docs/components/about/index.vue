@@ -8,7 +8,6 @@ import findme from './findme.vue'
 import AOS from 'aos';
 onMounted(() => {
   AOS.init({
-    offset: 250,
     once: true
     // easing: 'ease-in-out-back'
   });
