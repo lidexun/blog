@@ -6,18 +6,20 @@ import timeline from './timeline.vue'
 import mbp from './mbp.vue'
 import findme from './findme.vue'
 import AOS from 'aos';
-AOS.init({
-  offset: 300,
-  once: true
-  // easing: 'ease-in-out-back'
-});
-const my_project = reactive([
-  { url: '/ruyue.png' },
-  { url: '/aiqingren.png' },
-  { url: '/duduteyun_w.png' },
-  { url: '/youzi.png' },
-  { url: '/maka.png' },
-])
+onMounted(() => {
+  AOS.init({
+    offset: 300,
+    once: true
+    // easing: 'ease-in-out-back'
+  });
+})
+const my_project = [
+  { url: '../ruyue.png' },
+  { url: '../aiqingren.png' },
+  { url: '../duduteyun_w.png' },
+  { url: '../youzi.png' },
+  { url: '../maka.png' },
+]
 </script>
 <template>
    <!-- data-aos="fade-up" data-aos-duration="300" -->
@@ -53,11 +55,11 @@ const my_project = reactive([
       </card>
       <card :delay="750" title="用友开发者大赛" :style="{
         height: '50vh'
-      }" :background="'url(/yongyou.jpg) center/contain'" shadow>
+      }" :background="'url(../yongyou.jpg) center/contain'" shadow>
       </card>
       <card :delay="600" :style="{
         height: '50vh'
-      }" title="迷踪步" :background="'url(/mzb.jpg) center/contain'" shadow>
+      }" title="迷踪步" :background="'url(../mzb.jpg) center/contain'" shadow>
       </card>
   </div>
 </div>
@@ -67,20 +69,28 @@ const my_project = reactive([
       <div class="project_app_text" data-aos="fade-up" data-aos-duration="300" :data-aos-delay="150">
         基于Hybrid APP技术独立研发的应用
       </div>
-      <!-- <a-button type="outline" shape="round" size="large" data-aos="fade-up" data-aos-duration="300"
-              :data-aos-delay="300">已上架到各大安卓应用市场/苹果App Store</a-button> -->
+      <div class="flex items-center justify-center" data-aos="fade-up"  :data-aos-delay="300">
+        <span class="text-3 text-hex-8b5cf6 border-hex-8b5cf6 border border-solid p-2 rounded-full">
+          已上架到各大安卓应用市场/苹果App Store
+        </span>
+      </div>
       <div class="project_app_img">
         <template v-for="(item, index) in my_project">
           <img class="project_app_img_item" data-aos="project_app_img_item_on" :data-aos-delay="index * 150"
-            :src="item.url" :data-aos-offset="600" :style="{
+            :src="item.url" :data-aos-offset="500" :style="{
               'transform': 'translate3d(0px, 0px, ' + ((index + 2) * 350) + 'px)'
             }">
         </template>
       </div>
     </div>
-    <!-- <div class="project_other">
-              <div class="project_other_bg" data-aos-duration="1200" data-aos="project_other_bg_on" :data-aos-offset="300"></div>
-            </div> -->
+    <!-- <div class="project_other flex w-full m-4 m-auto md:w-screen-md lg:w-screen-lg">
+      <img src="/tantan.jpg">
+      <div>
+        <div class="text-8"><span>H5仿探探滑动功能</span></div>
+        <div>只需一个链接，即可让设计师一起创作，产品经理在线评审，工程师查看代码。团队成员汇聚一处，团队协作更轻松。</div>
+        <a href="https://ext.dcloud.net.cn/plugin?id=9026" target="_blank">前往体验 →</a>
+      </div>
+    </div> -->
   </div>
 </template>
 <style scoped>
@@ -108,6 +118,7 @@ const my_project = reactive([
 .project_app {
   text-align: center;
   margin: 10rem 0;
+  overflow: hidden;
 }
 
 .project_app_title {
@@ -144,7 +155,6 @@ const my_project = reactive([
   transition: 0.2s;
   margin: 0 0.8rem;
   width: 18rem;
-  height: fit-content;
 }
 
 .project_app_img_item.project_app_img_item_on {
@@ -176,6 +186,9 @@ const my_project = reactive([
 
 .project_other img {
   width: 18rem;
+  border: 1px solid #e2e2e2;
+  padding: 4px;
+  border-radius: 4px;
 }
 
 .project_other_title {
@@ -197,7 +210,7 @@ const my_project = reactive([
 
 }
 
-.project_other_bg {
+/* .project_other_bg {
   position: absolute;
   top: 0;
   left: 0;
@@ -209,7 +222,7 @@ const my_project = reactive([
   transition: all 1.2s ease-in-out;
   width: 100vw;
   transform: scaleX(0.6);
-}
+} */
 
 .project_other_bg::after {
   background-color: rgba(0, 0, 0, 0.1);
